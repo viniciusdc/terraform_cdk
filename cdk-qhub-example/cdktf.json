@@ -1,11 +1,14 @@
 {
   "language": "python",
   "app": "python3 ./main.py",
-  "terraformProviders": [],
+  "terraformProviders": [
+    "kubernetes@~> 1.11.3",
+    "google@~> 3.0"
+  ],
   "terraformModules": [],
   "codeMakerOutput": "imports",
   "context": {
     "excludeStackIdFromLogicalIds": "true",
-"allowSepCharsInLogicalIds": "true"
+    "allowSepCharsInLogicalIds": "true"
   }
 }
