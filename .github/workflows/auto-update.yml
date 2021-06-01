@@ -1,1 +1,41 @@
 
+name:  Synthesizes Terraform configuration
+
+on:
+  push:
+    paths:
+      - ".github/workflows/auto-update.yml"
+      - "cdk-qhub-example/*"
+
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    name: Terraform CDK install and Init
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install Terraform cdk (NPM)
+        run: |
+          sudo npm install -g cdktf-cli
+      - name: Install pip and virtualenv
+        run: |
+          python -m ensurepip --upgrade
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade virtualenv
+      - name: CDK Synth
+        run: |
+          cdktf synth
+      - name: Push Changes
+        run: |
+          git config user.email "vcerutti@quansight.com"
+          git config user.name "github action"
+          git add .
+          # only commit and push if we have changes
+          git diff --quiet && git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push origin "main")
+        env:
+          COMMIT_MSG: |
+            automated commit: '${{ github.sha }}'
