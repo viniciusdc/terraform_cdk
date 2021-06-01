@@ -34,11 +34,6 @@ jobs:
           cd cdk-qhub-example
           # Install missing providers
           cdktf get
-          cd ..
-      - name: CDK Synth
-        run: |
-          cd cdk-qhub-example 
-          cdktf synth
       - name: Push Changes
         run: |
           git config user.email "vcerutti@quansight.com"
