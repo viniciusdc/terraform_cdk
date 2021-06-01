@@ -3,7 +3,7 @@ name: Install terraform CDK
 on:
   push:
     paths:
-      - "cdkinit.yml"
+      - ".github/workflows/cdkinit.yml"
 
   workflow_dispatch:
 
@@ -18,7 +18,7 @@ jobs:
           python-version: '3.8'
       - name: Install Terraform cdk (NPM)
         run: |
-          npm install -g cdktf-cli
+          sudo npm install -g cdktf-cli
       - name: Install pip and virtualenv
         run: |
           python -m ensurepip --upgrade
