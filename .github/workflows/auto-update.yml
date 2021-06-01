@@ -28,6 +28,7 @@ jobs:
           python -m pip install --upgrade virtualenv
       - name: CDK Synth
         run: |
+          cd cdk-qhub-example 
           cdktf synth
       - name: Push Changes
         run: |
