@@ -26,11 +26,9 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.8' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-      - name: Install NPM
-        run: |
-          apt-get -y install npm
-      - name: Install Terraform cdk
-        run: |
+      - name: Install Terraform cdk (NPM)
+      - uses: bahmutov/npm-install@v1
+      - run: |
           npm install -g cdktf-cli
       - name: Install pip and virtualenv
         run: |
