@@ -12,7 +12,7 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    name: Terraform CDK install and Init
+    name: Synthesizes Terraform
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
