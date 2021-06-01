@@ -34,11 +34,18 @@ jobs:
           cd cdk-qhub-example
           # Install missing providers
           cdktf get
+          cd ..
+      - name: CDK Synth 
+        run: |
+          cd cdk-qhub-example
+          # Runs synth 
+          cdktf synth --output='.'
       - name: Push Changes
         run: |
           git config user.email "vcerutti@quansight.com"
           git config user.name "github action"
           git add .
+          git status
           # only commit and push if we have changes
           git diff --quiet && git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push origin "main")
         env:
