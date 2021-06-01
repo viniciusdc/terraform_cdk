@@ -25,11 +25,15 @@ jobs:
         run: |
           python -m ensurepip --upgrade
           python -m pip install --upgrade pip
-          python -m pip install --upgrade virtualenv
+          # install pipenv
+          python -m pip install pipenv
+          # initialise virtual environment (inside the project's directory)
+          python -m pipenv install
       - name: CDK Synth
         run: |
+          # run what you want from inside the virtual environment
           cd cdk-qhub-example 
-          cdktf synth
+          python -m pipenv run cdktf synth
       - name: Push Changes
         run: |
           git config user.email "vcerutti@quansight.com"
