@@ -27,11 +27,17 @@ jobs:
           python -m pip install --upgrade pip
           # Upgrade virtual environment
           python -m pip install --upgrade virtualenv
+          # install requirements
+          python -m pip install -r cdk-qhub-example/requirements.txt
+      - name: CDK Get
+        run: |
+          cd cdk-qhub-example
+          # Install missing providers
+          cdktf get
+          cd ..
       - name: CDK Synth
         run: |
           cd cdk-qhub-example 
-          # install requirements
-          python -m pip install -r requirements.txt
           cdktf synth
       - name: Push Changes
         run: |
